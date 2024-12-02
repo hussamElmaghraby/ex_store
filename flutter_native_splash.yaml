@@ -1,0 +1,10 @@
+flutter_native_splash:
+  #ios and android 11
+  image: assets/images/splash_ios_android.png
+  color: "#6EC1E5"
+  android_gravity: center
+  ios_content_mode: center
+
+  android_12:
+    image: assets/images/splash_android_12.png
+    color: "#6EC1E5"
