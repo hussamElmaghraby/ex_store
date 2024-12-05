@@ -1,20 +1,21 @@
 import 'package:ex_app/core/style/images/app_images.dart';
 import 'package:flutter/material.dart';
 
-class NoNetworkScreen extends StatelessWidget {
-  const NoNetworkScreen({super.key});
+class PageUnderBuildScreen extends StatelessWidget {
+  const PageUnderBuildScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage(
-            AppImages.noNetworkImage,
+          image: DecorationImage(
+            image: AssetImage(AppImages.pageUnderBuild),
+            fit: BoxFit.fill,
           ),
-        )),
+        ),
       ),
     );
   }
