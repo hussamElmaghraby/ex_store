@@ -1,6 +1,7 @@
 import 'package:ex_app/core/app/connectivity_controller.dart';
 import 'package:ex_app/core/common/screens/no_network_screen.dart';
 import 'package:ex_app/core/extensions/context_extension.dart';
+import 'package:ex_app/core/language/app_localizations_setup.dart';
 import 'package:ex_app/core/style/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +21,12 @@ class StoreApp extends StatelessWidget {
         if (value) {
           return ScreenUtilInit(
             child: MaterialApp(
-
+              locale: const Locale('en'),
+              supportedLocales: AppLocalizationsSetup.supportedLocales,
+              localeResolutionCallback:
+                  AppLocalizationsSetup.localeResolutionCallback,
+              localizationsDelegates:
+                  AppLocalizationsSetup.localizationsDelegates,
               theme: themeDark(),
               home: Scaffold(
                 body: Center(
@@ -28,25 +34,29 @@ class StoreApp extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text('test'),
-                      const Text(
-                        'test 2',
+                       Text(
+                        context.translate('test'),
                         style: TextStyle(
                           fontFamily: FontFamilyHelper.poppinsEnglish,
                           fontWeight: FontWeightHelper.bold,
                         ),
                       ),
                       Image.asset(context.assets.testImage ?? 'test')
-
                     ],
                   ),
                 ),
               ),
               builder: (_, widget) {
-                return Scaffold(
-                  body: Builder(builder: (_) {
-                    ConnectivityController.instance.init();
-                    return widget!;
-                  }),
+                return GestureDetector(
+                  onTap: () {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                  },
+                  child: Scaffold(
+                    body: Builder(builder: (_) {
+                      ConnectivityController.instance.init();
+                      return widget!;
+                    }),
+                  ),
                 );
               },
             ),
