@@ -41,7 +41,7 @@ class StoreApp extends StatelessWidget {
                           fontWeight: FontWeightHelper.bold,
                         ),
                       ),
-                      Image.asset(context.assets.testImage ?? 'test')
+                      // Image.asset(context.assets.testImage ?? 'test')
                     ],
                   ),
                 ),
