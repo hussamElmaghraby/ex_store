@@ -17,7 +17,7 @@ class AppLocalizations {
 
   // Static constant that holds the delegate for this localization.
   static const LocalizationsDelegate<AppLocalizations> delegate =
-      AppLocalizationsDelegate();
+  AppLocalizationsDelegate();
 
   // Map to store the localized strings.
   late Map<String, String> _localizedStrings;
@@ -25,7 +25,7 @@ class AppLocalizations {
   // Method to load the localized strings from JSON files.
   Future<void> load() async {
     final jsonString =
-        await rootBundle.loadString('lang/${locale.languageCode}.json');
+    await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
 
     final jsonMap = json.decode(jsonString) as Map<String, dynamic>;
 

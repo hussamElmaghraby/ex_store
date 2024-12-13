@@ -1,7 +1,7 @@
-
-import 'package:ex_app/core/language/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'app_localizations.dart';
 
 class AppLocalizationsSetup {
   static const Iterable<Locale> supportedLocales = [
@@ -10,7 +10,7 @@ class AppLocalizationsSetup {
   ];
 
   static const Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      [
+  [
     AppLocalizations.delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
@@ -19,9 +19,9 @@ class AppLocalizationsSetup {
   ];
 
   static Locale? localeResolutionCallback(
-    Locale? locale,
-    Iterable<Locale>? supportedLocales,
-  ) {
+      Locale? locale,
+      Iterable<Locale>? supportedLocales,
+      ) {
     // Check if the desired locale is supported
     for (final supportedLocale in supportedLocales!) {
       if (supportedLocale.languageCode == locale!.languageCode &&

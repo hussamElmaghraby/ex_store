@@ -11,11 +11,8 @@ void main() async {
 
   //initialize
   await EnvVariable.instance.init(envType: EnvTypeEnum.DEV);
-  if (Platform.isAndroid) {
-    // messagingSenderId : project_number
-    // apiKey: current_key
-    // appId: mobilesdk_app_id
-    // projectId: projectId
+  Platform.isAndroid ?
+
     await Firebase.initializeApp(
       options: const FirebaseOptions(
         apiKey: 'AIzaSyA7SyBSUemF8lmfl7r0EnIAoLNmGYQWwTg',
@@ -23,8 +20,8 @@ void main() async {
         messagingSenderId: '831702218078',
         projectId: 'exstore-59959',
       ),
-    );
-  }
+    ) :  await Firebase.initializeApp();
+
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,

@@ -1,44 +1,39 @@
+
 import 'package:ex_app/core/language/app_localizations.dart';
 import 'package:ex_app/core/style/theme/assets_extension.dart';
 import 'package:ex_app/core/style/theme/color_extension.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 extension ContextExt on BuildContext {
-
-
-// Colors
+  //color
   MyColors get color => Theme.of(this).extension<MyColors>()!;
 
-  // Images
+  // images
   MyAssets get assets => Theme.of(this).extension<MyAssets>()!;
 
-  String translate(String langKey){
-    return AppLocalizations.of(this)!.translate(langKey).toString();
+  // style
+  TextStyle get textStyle => Theme.of(this).textTheme.displaySmall!;
+
+//Language
+  String translate(String langkey) {
+    return AppLocalizations.of(this)!.translate(langkey).toString();
   }
 
-  Future<Object?> pushNamed(
-    String routeName, {
-    Object? arguments,
-  }) async {
+  //Navigation
+
+  Future<dynamic> pushName(String routeName, {Object? arguments}) {
     return Navigator.of(this).pushNamed(routeName, arguments: arguments);
   }
 
-  Future<Object?> pushReplacementNamed(
-    String routeName, {
-    Object? arguments,
-  }) async {
+  Future<dynamic> pushReplacementNamed(String routeName, {Object? arguments}) {
     return Navigator.of(this)
         .pushReplacementNamed(routeName, arguments: arguments);
   }
 
-  Future<Object?> pushAndRemoveUntil(
-    String routeName,
-  ) async {
-    return Navigator.of(this).pushNamedAndRemoveUntil(
-      routeName,
-      (_) => false,
-    );
+  Future<dynamic> pushNamedAndRemoveUntil(String routeName,
+      {Object? arguments}) {
+    return Navigator.of(this)
+        .pushNamedAndRemoveUntil(routeName, (route) => false);
   }
 
   void pop() => Navigator.of(this).pop();
