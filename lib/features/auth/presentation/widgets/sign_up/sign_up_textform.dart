@@ -8,14 +8,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginTextForm extends StatefulWidget {
-  const LoginTextForm({super.key});
+class SignUpTextForm extends StatefulWidget {
+  const SignUpTextForm({super.key});
 
   @override
-  State<LoginTextForm> createState() => _LoginTextFormState();
+  State<SignUpTextForm> createState() => _SignUpTextFormState();
 }
 
-class _LoginTextFormState extends State<LoginTextForm> {
+class _SignUpTextFormState extends State<SignUpTextForm> {
   bool isShowPassword = false;
 
   @override
@@ -23,7 +23,36 @@ class _LoginTextFormState extends State<LoginTextForm> {
     return Form(
       child: Column(
         children: [
-          // Email
+          CustomFadeInRight(
+            duration: 200,
+            child: CustomTextField(
+              controller: TextEditingController(),
+              hintText: context.translate(
+                LangKeys.fullName,
+              ),
+              keyboardType: TextInputType.visiblePassword,
+              validator: (value) {
+                if (value == null || value.isEmpty || value.length < 4) {
+                  return context.translate(LangKeys.validName);
+                }
+                return null;
+              },
+              suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    isShowPassword = !isShowPassword;
+                  });
+                },
+                icon: Icon(
+                  color: Colors.white,
+                  isShowPassword ? Icons.visibility_off : Icons.visibility,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 24.sp,
+          ),
           CustomFadeInRight(
             duration: 200,
             child: CustomTextField(
@@ -43,7 +72,6 @@ class _LoginTextFormState extends State<LoginTextForm> {
           SizedBox(
             height: 24.sp,
           ),
-          // Password
           CustomFadeInRight(
             duration: 200,
             child: CustomTextField(
@@ -65,8 +93,8 @@ class _LoginTextFormState extends State<LoginTextForm> {
                   });
                 },
                 icon: Icon(
-                  color: Colors.white,
                   isShowPassword ? Icons.visibility_off : Icons.visibility,
+                  color: Colors.white,
                 ),
               ),
             ),
