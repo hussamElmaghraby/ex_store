@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:ex_app/core/servcie/shared_pref/pref_keys.dart';
 import 'package:ex_app/core/servcie/shared_pref/shared_pref.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_state.dart';
@@ -10,7 +11,9 @@ part 'app_cubit.freezed.dart';
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(const AppState.initial());
   bool isDark = true;
+  String currentLangCode = 'en';
 
+  // Change Theme
   Future<void> changeAppThemeMode({bool? sharedMode}) async {
     if (sharedMode != null) {
       isDark = sharedMode;
@@ -35,4 +38,24 @@ class AppCubit extends Cubit<AppState> {
           );
     }
   }
+
+  //Change Language
+
+  void getSavedLanguage() {
+    final result = SharedPref().containPreference(PrefKeys.language)
+        ? SharedPref().getString(PrefKeys.language)
+        : 'en';
+    currentLangCode = result!;
+    emit(AppState.languageChange(locale: Locale(currentLangCode)));
+  }
+
+  Future<void> _changeLang(String langCode) async {
+    await SharedPref().setString(PrefKeys.language, langCode);
+    currentLangCode = langCode;
+    emit(AppState.languageChange(locale: Locale(currentLangCode)));
+  }
+
+  void toArabic() => _changeLang('ar');
+
+  void toEnglish() => _changeLang('en');
 }

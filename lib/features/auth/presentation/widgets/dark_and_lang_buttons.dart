@@ -3,6 +3,7 @@ import 'package:ex_app/core/common/animations/animate_do.dart';
 import 'package:ex_app/core/common/widgets/custom_linear_button.dart';
 import 'package:ex_app/core/common/widgets/text_app.dart';
 import 'package:ex_app/core/extensions/context_extension.dart';
+import 'package:ex_app/core/language/app_localizations.dart';
 import 'package:ex_app/core/language/lang_keys.dart';
 import 'package:ex_app/core/style/fonts/font_weight_helper.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,7 +44,13 @@ class DarkAndLangButtons extends StatelessWidget {
           child: CustomLinearButton(
             height: 44.h,
             width: 100.w,
-            onPressed: () {},
+            onPressed: () {
+              if (AppLocalizations.of(context)!.isEnLocale == true) {
+                cubit.toArabic();
+              } else {
+                cubit.toEnglish();
+              }
+            },
             child: TextApp(
               text: context.translate(LangKeys.language),
               theme: context.textStyle.copyWith(

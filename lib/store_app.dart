@@ -13,9 +13,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import 'core/di/injection_container.dart';
-import 'core/language/lang_keys.dart';
-import 'core/style/fonts/font_family_helper.dart';
-import 'core/style/fonts/font_weight_helper.dart';
 
 class StoreApp extends StatelessWidget {
   const StoreApp({super.key});
@@ -30,14 +27,14 @@ class StoreApp extends StatelessWidget {
             create: (context) => sl<AppCubit>()
               ..changeAppThemeMode(
                 sharedMode: SharedPref().getBoolean(PrefKeys.themeMode),
-              ),
+              )..getSavedLanguage(),
             child: ScreenUtilInit(
               child: BlocBuilder<AppCubit, AppState>(
                 buildWhen: (prev, next) => prev != next,
                 builder: (context, state) {
                   final cubit = context.read<AppCubit>();
                   return MaterialApp(
-                    locale: const Locale('en'),
+                    locale: Locale(cubit.currentLangCode),
                     supportedLocales: AppLocalizationsSetup.supportedLocales,
                     onGenerateRoute: AppRoutes.onGenerateRoute,
                     initialRoute: AppRoutes.login,
@@ -46,6 +43,7 @@ class StoreApp extends StatelessWidget {
                     localizationsDelegates:
                         AppLocalizationsSetup.localizationsDelegates,
                     theme: cubit.isDark ? themeDark() : themeLight(),
+
                     builder: (_, widget) {
                       return GestureDetector(
                         onTap: () {
