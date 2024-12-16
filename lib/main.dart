@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:ex_app/core/app/env.variable.dart';
+import 'package:ex_app/core/di/injection_container.dart';
 import 'package:ex_app/core/servcie/shared_pref/shared_pref.dart';
 import 'package:ex_app/store_app.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -27,6 +28,8 @@ void main() async {
       : await Firebase.initializeApp();
 
   await SharedPref().instantiatePreferences();
+
+  await setUpInjector();
   Bloc.observer = AppBlocObserver();
 
   await SystemChrome.setPreferredOrientations([
