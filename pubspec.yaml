@@ -28,6 +28,20 @@ dependencies:
   flutter_native_splash: ^2.4.3
   animate_do: ^3.3.4
 
+  # bloc
+  flutter_bloc: ^8.1.6
+  bloc: ^8.1.4
+
+  #shared_preferences
+  shared_preferences: ^2.3.3
+  freezed_annotation: ^2.4.4
+  freezed: ^2.5.7
+
+
+
+
+
+
 
 
 
@@ -36,6 +50,7 @@ dependencies:
 dev_dependencies:
   very_good_analysis: ^6.0.0
   flutter_launcher_icons: ^0.14.1
+  build_runner: ^2.4.13
   flutter_test:
     sdk: flutter
 
