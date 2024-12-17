@@ -1,4 +1,6 @@
 import 'package:ex_app/core/app/app_cubit/app_cubit.dart';
+import 'package:ex_app/core/servcie/graphQl/api_service.dart';
+import 'package:ex_app/core/servcie/graphQl/dio_factory.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -8,5 +10,7 @@ Future<void> setUpInjector() async {
 }
 
 Future<void> _initCore() async {
-  sl.registerFactory(AppCubit.new);
+  final dio  = DioFactory.getDio();
+  sl..registerFactory(AppCubit.new)
+  ..registerSingleton(ApiService(dio));
 }
