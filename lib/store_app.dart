@@ -4,8 +4,7 @@ import 'package:ex_app/core/common/screens/no_network_screen.dart';
 import 'package:ex_app/core/extensions/context_extension.dart';
 import 'package:ex_app/core/language/app_localizations_setup.dart';
 import 'package:ex_app/core/routes/app_routes.dart';
-import 'package:ex_app/core/servcie/shared_pref/pref_keys.dart';
-import 'package:ex_app/core/servcie/shared_pref/shared_pref.dart';
+import 'package:ex_app/core/service/shared_pref/pref_keys.dart';
 import 'package:ex_app/core/style/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import 'core/di/injection_container.dart';
+import 'core/service/shared_pref/shared_pref.dart';
 
 class StoreApp extends StatelessWidget {
   const StoreApp({super.key});

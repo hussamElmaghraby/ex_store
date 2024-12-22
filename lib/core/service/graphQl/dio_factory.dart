@@ -1,7 +1,7 @@
 
 import 'package:dio/dio.dart';
-import 'package:ex_app/core/servcie/shared_pref/pref_keys.dart';
-import 'package:ex_app/core/servcie/shared_pref/shared_pref.dart';
+import 'package:ex_app/core/service/shared_pref/pref_keys.dart';
+import 'package:ex_app/core/service/shared_pref/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 

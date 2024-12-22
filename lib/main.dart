@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:ex_app/core/app/env.variable.dart';
 import 'package:ex_app/core/di/injection_container.dart';
-import 'package:ex_app/core/servcie/shared_pref/shared_pref.dart';
 import 'package:ex_app/store_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 import 'core/app/bloc_observer.dart';
+import 'core/service/shared_pref/shared_pref.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

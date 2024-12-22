@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:ex_app/core/servcie/shared_pref/pref_keys.dart';
-import 'package:ex_app/core/servcie/shared_pref/shared_pref.dart';
+import 'package:ex_app/core/service/shared_pref/pref_keys.dart';
+import 'package:ex_app/core/service/shared_pref/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
