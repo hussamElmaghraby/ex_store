@@ -11,7 +11,7 @@ class AuthQuery {
     return {
       'query': r'''
       mutation Login($email: String! , $password: String!) {
-      	login(email: "$email", password: "$password") {
+      	login(email: $email, password: $password) {
 		      access_token
 		      refresh_token
 	     }

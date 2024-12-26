@@ -1,15 +1,18 @@
 import 'package:ex_app/core/di/injection_container.dart';
 import 'package:ex_app/core/routes/base_routes.dart';
+import 'package:ex_app/features/admin/home_admin.dart';
 import 'package:ex_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ex_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:ex_app/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:ex_app/features/customer/home_customer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRoutes {
   static const String login = '/login';
   static const String signUp = '/signUp';
-  static const String home = '/home';
+  static const String homeAdmin = '/homeAdmin';
+  static const String homeCustomer = '/customerAdmin';
 
   static Route<void> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -19,11 +22,15 @@ class AppRoutes {
         return BaseRoute(
             page: BlocProvider<AuthBloc>(
           create: (_) => sl<AuthBloc>(),
-          child: LoginScreen(),
+          child: const LoginScreen(),
         ));
 
       case signUp:
         return BaseRoute(page: const SignupScreen());
+      case homeAdmin:
+        return BaseRoute(page: const HomeAdminScreen());
+      case homeCustomer:
+        return BaseRoute(page: const HomeCustomerScreen());
 
       default:
         return BaseRoute(page: const SizedBox());

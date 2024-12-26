@@ -7,9 +7,9 @@ class UserRoleResponse {
 
   factory UserRoleResponse.fromJson(Map<String, dynamic> json) => _$UserRoleResponseFromJson(json);
 
-  @JsonKey(name: 'user_role')
+  @JsonKey(name: 'role')
   final String? userRole;
-  @JsonKey(name: 'user_id')
+  @JsonKey(name: 'id')
   final int? userId;
 
 

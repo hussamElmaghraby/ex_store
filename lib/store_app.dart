@@ -27,7 +27,8 @@ class StoreApp extends StatelessWidget {
             create: (context) => sl<AppCubit>()
               ..changeAppThemeMode(
                 sharedMode: SharedPref().getBoolean(PrefKeys.themeMode),
-              )..getSavedLanguage(),
+              )
+              ..getSavedLanguage(),
             child: ScreenUtilInit(
               child: BlocBuilder<AppCubit, AppState>(
                 buildWhen: (prev, next) => prev != next,
@@ -37,13 +38,18 @@ class StoreApp extends StatelessWidget {
                     locale: Locale(cubit.currentLangCode),
                     supportedLocales: AppLocalizationsSetup.supportedLocales,
                     onGenerateRoute: AppRoutes.onGenerateRoute,
-                    initialRoute: AppRoutes.login,
+                    initialRoute: SharedPref()
+                                .getString(PrefKeys.accessToken) !=
+                            null
+                        ? SharedPref().getString(PrefKeys.userRole) == 'admin'
+                            ? AppRoutes.homeAdmin
+                            : AppRoutes.homeCustomer
+                        : AppRoutes.login,
                     localeResolutionCallback:
                         AppLocalizationsSetup.localeResolutionCallback,
                     localizationsDelegates:
                         AppLocalizationsSetup.localizationsDelegates,
                     theme: cubit.isDark ? themeDark() : themeLight(),
-
                     builder: (_, widget) {
                       return GestureDetector(
                         onTap: () {
