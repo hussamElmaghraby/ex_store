@@ -10,7 +10,7 @@ import 'package:ex_app/features/auth/presentation/widgets/login/login_button.dar
 import 'package:ex_app/features/auth/presentation/widgets/login/login_text_form.dart';
 import 'package:ex_app/features/auth/presentation/widgets/sign_up/sign_up_button.dart';
 import 'package:ex_app/features/auth/presentation/widgets/sign_up/sign_up_textform.dart';
-import 'package:ex_app/features/auth/presentation/widgets/sign_up/signup_avatar.dart';
+import 'package:ex_app/features/auth/presentation/widgets/sign_up/user_avatar_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

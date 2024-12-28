@@ -1,3 +1,4 @@
+import 'package:ex_app/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:ex_app/core/di/injection_container.dart';
 import 'package:ex_app/core/routes/base_routes.dart';
 import 'package:ex_app/features/admin/home_admin.dart';
@@ -26,7 +27,16 @@ class AppRoutes {
         ));
 
       case signUp:
-        return BaseRoute(page: const SignupScreen());
+        return BaseRoute(
+          page: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) => sl<UploadImageCubit>(),
+              ),
+            ],
+            child: const SignupScreen(),
+          ),
+        );
       case homeAdmin:
         return BaseRoute(page: const HomeAdminScreen());
       case homeCustomer:
