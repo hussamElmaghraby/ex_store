@@ -1,13 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:ex_app/core/service/shared_pref/pref_keys.dart';
 import 'package:ex_app/core/service/shared_pref/shared_pref.dart';
-import 'package:ex_app/core/utils/app_strings.dart';
 import 'package:ex_app/features/auth/data/models/login_request/login_request.dart';
 import 'package:ex_app/features/auth/data/models/login_response/login_response.dart';
+import 'package:ex_app/features/auth/data/models/signup_request/sign_up_request.dart';
 import 'package:ex_app/features/auth/data/repos/auth_repo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'auth_event.dart';
 
@@ -18,10 +17,12 @@ part 'auth_bloc.freezed.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this._repos) : super(const _Initial()) {
     on<LoginEvent>(_login);
+    on<SignUpEvent>(_signUp);
   }
 
   final AuthRepos _repos;
   TextEditingController emailController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -64,5 +65,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       },
     );
+  }
+
+  Future<void> _signUp(SignUpEvent event, Emitter<AuthState> state) async {
+    final result = await _repos.signUp(
+      signUpRequest: SignUpRequest(
+        name: nameController.text,
+        password: passwordController.text,
+        avatar: event.imageUrl,
+        email: emailController.text,
+      ),
+    );
+
+    result.when(success: (LoginResponse data) {
+      add(const AuthEvent.login());
+    }, failure: (String error) {
+      emit(
+        AuthState.error(
+          error: error,
+        ),
+      );
+    });
   }
 }

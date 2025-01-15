@@ -4,6 +4,7 @@ import 'package:ex_app/core/utils/app_strings.dart';
 import 'package:ex_app/features/auth/data/datasource/auth_datasource.dart';
 import 'package:ex_app/features/auth/data/models/login_request/login_request.dart';
 import 'package:ex_app/features/auth/data/models/login_response/login_response.dart';
+import 'package:ex_app/features/auth/data/models/signup_request/sign_up_request.dart';
 import 'package:ex_app/features/auth/data/models/user_role_response/user_role_response.dart';
 
 class AuthRepos {
@@ -26,4 +27,21 @@ class AuthRepos {
   Future<UserRoleResponse> userRole({required String token}) async {
     return _datasource.userRole(token);
   }
+
+
+
+  Future<ApiResult<LoginResponse>> signUp(
+      {required SignUpRequest signUpRequest}) async {
+    try {
+      final response = await _datasource.signUp(signUpRequest: signUpRequest);
+      return ApiResult.success(response);
+    } catch (e) {
+      return const ApiResult.failure(
+        LangKeys.loggedError,
+      );
+    }
+  }
+
+
+
 }
