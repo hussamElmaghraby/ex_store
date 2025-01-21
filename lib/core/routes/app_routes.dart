@@ -1,7 +1,7 @@
 import 'package:ex_app/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:ex_app/core/di/injection_container.dart';
 import 'package:ex_app/core/routes/base_routes.dart';
-import 'package:ex_app/features/admin/home_admin.dart';
+import 'package:ex_app/features/admin/presentation/screens/home_admin_screen.dart';
 import 'package:ex_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ex_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:ex_app/features/auth/presentation/screens/sign_up_screen.dart';
